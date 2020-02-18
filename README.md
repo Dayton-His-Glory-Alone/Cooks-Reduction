@@ -1,15 +1,18 @@
 # Cooks-Reduction
+
 #Format of graph files: graphs2019.txt
 The graphs are stored in a text file one by one. For an undirected graph G : (V, E) with |V | = n
 (i.e., n vertices), G will be stored in (n+1) lines. The first line contains the number n to indicate
 the size of V . The following n lines represent the adjacency matrix m of G (i.e., m is an n × n
 two dimensional array). If the entry m[i][j] = 1, that means (i, j) ∈ E; otherwise m[i][j] = 0
 indicates (i, j) 6∈ E.
+
 Since all graphs are undirected, all matrices are symmetric, i.e., for all 0 ≤ i, j < n we have
 m[i][j] = m[j][i]. If m[i][j] = m[j][i] = 1, and we count as one edge in E. Note that the diagonal
 of the matrix is set to 1, i.e. m[i][i] = 1 since we consider every vertex links to itself but we
 do not count it as an edges, thus (v, v) does not contribute to the edge count, |E|. The file is
 ended by an empty graph, i.e., n = 0.
+
 • Format of 3CNF files: cnfs2019.txt
 Each line in the files is a 3CNF, starting with a number to indicate the number of boolean
 variables in this 3CNF. The variables are indexed from 1, 2, to n. After the first number in
