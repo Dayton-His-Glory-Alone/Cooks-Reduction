@@ -9,6 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.sun.javafx.geom.Edge;
+
 /**
  * @author Dayton Rumbold Created on: 2/18/20 Last Modified on: 2/23/20
  *
@@ -16,12 +18,12 @@ import java.util.ArrayList;
  */
 public class solveClique {
 
-	private int[][] matrix;
-	private int edges;
+	private static int[][] matrix;
+	private static int edges;
 	private static long time;
-	private int vertices=0;
-	private int row=0;
-	private int graphNumber=0;
+	private static int vertices=0;
+	private static int row=0;
+	private static int graphNumber=0;
 	
 	//default
 	public solveClique() {
@@ -44,7 +46,9 @@ public class solveClique {
 			}
 		setEdges();
 	}
-	
+	public void results(ArrayList<Integer> clique) {
+		
+	}
 	 public ArrayList<Integer> findMaxClique(ArrayList<Integer> clique, int row, int vertices) {
 	        long start = System.currentTimeMillis();
 
@@ -81,7 +85,7 @@ public class solveClique {
 	/*
 	 * To begin, counts ones in graph (edges)
 	 */
-	public void setEdges() {
+	public static void setEdges() {
 		edges = 0;
 		for(int i= 0; i< matrix.length; i++) {
 			for (int j=0; j<matrix.length; j++) {
@@ -95,6 +99,7 @@ public class solveClique {
 	 */
 	public void readGraph(solveClique clique, String fname) {
 try {
+		System.out.println("Creating Graph");
 			BufferedReader br= new BufferedReader(new FileReader(fname));
 			String line= null;
 			while((line=br.readLine())!=null) {
@@ -140,21 +145,57 @@ try {
 		
 		return complement;	
 	}
+	
 	/**
 	 * @param args
 	 * @throws IOException 
 	 * @throws NumberFormatException 
 	 */
-	public static void main(String[] args) throws NumberFormatException, IOException {
+	public static void main(String[] args) {
 		
 		//String fname= args[0]; //change when using on Linux server
-		String fname= "graphs2019.txt";
+		String fname= "C:/Users/Dayton/Desktop/mywork/IT328_Asg1/src/graphs2019.txt";
 		solveClique clique= new solveClique();
-		
+		try {
+			//read in file
+			BufferedReader br= new BufferedReader(new FileReader(fname));
+			String line = null;
+			while ((line= br.readLine())!= null) {
+				vertices= Integer.parseInt(line);
+				if(vertices!= 0) {
+					graphNumber++;
+					
+					for(int i =0; i< vertices; i++) {
+						for(int j= 0; j< vertices; j++) {
+							char c= (char) br.read();
+							int v= Character.getNumericValue(c);
+							matrix[i][j]= v;
+							setEdges();
+							br.read();
+							
+						}
+						br.read();
+						br.read();
+					}
+					ArrayList<Integer>arryL= new ArrayList<Integer>();
+					arryL= clique.findMaxClique(arryL,row,vertices);
+					//print out 
+				}
+			}
+		}
+		catch(FileNotFoundException fnf) {
+			System.out.println("file not found");
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int edges = 0;
 		int totalEdge = 0;
 		
-		clique.readGraph(clique,fname);
+		//clique.readGraph(clique,fname);
 	}
 
 }
