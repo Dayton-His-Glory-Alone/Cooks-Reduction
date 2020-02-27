@@ -49,7 +49,6 @@ public class solveClique {
 	}
 
 	public void results(ArrayList<Integer> clique) {
-		int size = clique.size();
 		System.out.println("G" + graphNumber + "(" + vertices + ", " + edges + ")" + "{" + clique.toString() + "}"
 				+ "size= " + clique.size() + time + "ms");
 	}
@@ -145,14 +144,6 @@ public class solveClique {
 		}
 	}
 
-	/*
-	 * To do: finish complement method
-	 */
-	public solveClique createComplement() {
-		solveClique complement = new solveClique(matrix);
-
-		return complement;
-	}
 
 	/**
 	 * @param args
