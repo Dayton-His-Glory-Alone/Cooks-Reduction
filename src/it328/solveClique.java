@@ -9,12 +9,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.sun.javafx.geom.Edge;
-
 /**
- * @author Dayton Rumbold Created on: 2/18/20 Last Modified on: 2/23/20
+ * @author Dayton Rumbold Created on: 2/18/20 Last Modified on: 2/27/20
  *
- *         Solves kCliques
+ *    Clique solver 3000
  */
 public class solveClique {
 
@@ -105,58 +103,10 @@ public class solveClique {
 	 * To do: finish creation of graph
 	 */
 	public void readGraph(solveClique clique, String fname) {
-		try {
-			System.out.println("Creating Graph");
-			BufferedReader br = new BufferedReader(new FileReader(fname));
-			String line = null;
-			while ((line = br.readLine()) != null) {
-				edges = 0;
-				vertices = Integer.parseInt(line);
-				if (vertices != 0) {
-					graphNumber++;
-
-					for (int i = 0; i < vertices; i++) {
-						for (int j = 0; j < vertices; j++) {
-							char c = (char) br.read();
-							int v = Character.getNumericValue(c);
-							matrix[i][j] = v;
-							setEdges();
-							br.read();
-						}
-						br.read();
-						br.read();
-					}
-
-					ArrayList<Integer> cliqueAL = new ArrayList<Integer>();
-					cliqueAL = clique.findMaxClique(cliqueAL, row, vertices);
-					// print(cliqueAL);
-				}
-			}
-			br.close();
-		} catch (FileNotFoundException fnf) {
-			System.out.println("File not found");
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-
-	/**
-	 * @param args
-	 * @throws IOException
-	 * @throws NumberFormatException
-	 */
-	public static void main(String[] args) {
-
-		// String fname= args[0]; //change when using on Linux server
-		solveClique clique = new solveClique();
+		//solveClique clique = new solveClique();
 		BufferedReader br= null;
 		try {
-			String fname = "C:/Users/Dayton/Desktop/mywork/IT328_Asg1/src/graphs2019.txt";
+		//	fname = "C:/Users/Dayton/Desktop/mywork/IT328_Asg1/src/graphs2019.txt";
 			// read in file
 			br = new BufferedReader(new FileReader(fname));
 			String line = null;
@@ -181,6 +131,7 @@ public class solveClique {
 					}
 					ArrayList<Integer> arryL = new ArrayList<Integer>();
 					arryL = clique.findMaxClique(arryL, row, vertices);
+					results(arryL);
 					// print out
 				}
 			}
@@ -193,10 +144,63 @@ public class solveClique {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int edges = 0;
-		int totalEdge = 0;
+		
 
-		// clique.readGraph(clique,fname);
+	}
+
+
+	/**
+	 * @param args
+	 * @throws IOException
+	 * @throws NumberFormatException
+	 */
+	public static void main(String[] args) {
+
+		// String fname= args[0]; //change when using on Linux server
+		String fname = "C:/Users/Dayton/Desktop/mywork/IT328_Asg1/src/graphs2019.txt";
+		solveClique clique = new solveClique();
+//		BufferedReader br= null;
+//		try {
+//			String fname = "C:/Users/Dayton/Desktop/mywork/IT328_Asg1/src/graphs2019.txt";
+//			// read in file
+//			br = new BufferedReader(new FileReader(fname));
+//			String line = null;
+//			while ((line = br.readLine()) != null) {
+//				edges= 0;
+//				vertices = Integer.parseInt(line);
+//				if (vertices != 0) {
+//					graphNumber++;
+//					
+//					for (int i = 0; i < vertices; i++) {
+//					
+//						for (int j = 0; j < vertices; j++) {
+//							char c = (char) br.read();
+//							int v = Character.getNumericValue(c);
+//							matrix[i][j] = v;
+//							setEdges();
+//							br.read();
+//
+//						}
+//						br.read();
+//						br.read();
+//					}
+//					ArrayList<Integer> arryL = new ArrayList<Integer>();
+//					arryL = clique.findMaxClique(arryL, row, vertices);
+//					// print out
+//				}
+//			}
+//		} catch (FileNotFoundException fnf) {
+//			System.out.println("file not found");
+//		} catch (NumberFormatException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+
+		 clique.readGraph(clique,fname);
 	}
 
 }
