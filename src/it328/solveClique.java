@@ -86,7 +86,7 @@ public class solveClique {
 	}
 
 	/*
-	 * To begin, counts ones in graph (edges)
+	 *  counts ones in graph (edges)
 	 */
 	public static void setEdges() {
 		edges = 0;
@@ -202,5 +202,7 @@ public class solveClique {
 
 		 clique.readGraph(clique,fname);
 	}
+
+
 
 }
