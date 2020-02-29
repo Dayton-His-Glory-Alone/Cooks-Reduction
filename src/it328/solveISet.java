@@ -40,6 +40,10 @@ public class solveISet {
 		}
 		setEdges();
 	}
+	/**
+	 * setEdges()
+	 * Note: Every vertex links to itself but doesn't count as an edge
+	 */
 	public static void setEdges() {
 		edges = 0;
 		for (int i = 0; i < matrix.length; i++) {
@@ -122,7 +126,7 @@ public class solveISet {
 								br.read();
 							}
 							ArrayList<Integer> arryL = new ArrayList<Integer>();
-							arryL = iset.findMaxim(arryL, row, vertices);
+						//	arryL = iset.findMaxim(arryL, row, vertices);
 							results(arryL);
 							// print out
 						}
@@ -150,9 +154,9 @@ public class solveISet {
 	public static void main(String[] args) {
 		solveISet solveIS= new solveISet();
 		String fname = "C:/Users/Dayton/Desktop/mywork/IT328_Asg1/src/graphs2019.txt";
+		//solveIS= solveIS.createComplement();
 		solveIS.createGraph(fname, solveIS);
-		
-		
+		solveIS= solveIS.createComplement();
 	}
 
 }
