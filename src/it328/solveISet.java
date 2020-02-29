@@ -3,6 +3,10 @@ package it328;
  * 
  */
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -90,19 +94,65 @@ public class solveISet {
 	/**
 	 * FINISH...
 	 */
-	public void createGraph() {
-		
+	public void createGraph(String fname, solveISet iset) {
+		//solveClique clique = new solveClique();
+				BufferedReader br= null;
+				try {
+				//	fname = "C:/Users/Dayton/Desktop/mywork/IT328_Asg1/src/graphs2019.txt";
+					// read in file
+					br = new BufferedReader(new FileReader(fname));
+					String line = null;
+					while ((line = br.readLine()) != null) {
+						edges= 0;
+						vertices = Integer.parseInt(line);
+						if (vertices != 0) {
+							graphNumber++;
+							
+							for (int i = 0; i < vertices; i++) {
+							
+								for (int j = 0; j < vertices; j++) {
+									char c = (char) br.read();
+									int v = Character.getNumericValue(c);
+									matrix[i][j] = v;
+									setEdges();
+									br.read();
+
+								}
+								br.read();
+								br.read();
+							}
+							ArrayList<Integer> arryL = new ArrayList<Integer>();
+							arryL = iset.findMaxim(arryL, row, vertices);
+							results(arryL);
+							// print out
+						}
+					}
+				} catch (FileNotFoundException fnf) {
+					System.out.println("file not found");
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+
 		
 	}
-	public void findMaxim() {
+	public ArrayList<Integer> findMaxim(ArrayList<Integer> arryL, int row2, int vertices2) {
+		return arryL;
 		
 	}
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		solveISet solveIS= new solveISet();
+		String fname = "C:/Users/Dayton/Desktop/mywork/IT328_Asg1/src/graphs2019.txt";
+		solveIS.createGraph(fname, solveIS);
 		
-
+		
 	}
 
 }
